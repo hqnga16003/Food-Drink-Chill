@@ -20,7 +20,7 @@ android {
             keyPassword = "123456"
         }
         create("release") {
-            storeFile = file("C:\\Users\\hqnga\\OneDrive\\Documents\\release.keystore")
+            storeFile = file("release.keystore")
             storePassword = "Hoangquangnga160302@"
             keyAlias = "key1"
             keyPassword = "Hoangquangnga160302@"
