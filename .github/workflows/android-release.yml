@@ -1,0 +1,57 @@
+name: Android Release
+
+on:
+  push:
+    tags:
+      - "*"
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: Create Firebase config
+        run: |
+          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > app/google-services.json
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_RELEASE_BASE64 }}" | base64 --decode > app/release.keystore
+
+      - name: Build release APK
+        run: ./gradlew assembleRelease
+
+      - name: Rename APK
+        run: |
+          mv app/build/outputs/apk/release/app-release.apk \
+             app/build/outputs/apk/release/food-drink-chill-${{ github.ref_name }}.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ github.ref_name }}
+          path: app/build/outputs/apk/release/food-drink-chill-${{ github.ref_name }}.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Food Drink Chill App ver${{ github.ref_name }}
+          body_path: CHANGELOG.md
+          files: app/build/outputs/apk/release/food-drink-chill-${{ github.ref_name }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
