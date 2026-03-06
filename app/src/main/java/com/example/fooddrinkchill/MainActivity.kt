@@ -7,12 +7,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.fooddrinkchill.navigation.NavigationRoot
 import com.example.fooddrinkchill.ui.theme.FoodDrinkChillTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+        initSplashScreen(splashScreen)
         enableEdgeToEdge()
         setContent {
             FoodDrinkChillTheme {
@@ -22,6 +26,14 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
+        }
+    }
+
+    private fun initSplashScreen(splashScreen: SplashScreen) {
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+            splashScreenView.view.animate().alpha(0f).setDuration(500L).withEndAction {
+                splashScreenView.remove()
+            }.start()
         }
     }
 }

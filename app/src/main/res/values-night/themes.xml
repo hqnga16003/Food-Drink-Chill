@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.FoodDrinkChill" parent="android:Theme.Material.Light.NoActionBar" />
-
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/light_background</item>
+        <item name="windowSplashScreenBackground">@color/dark_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/logo_app</item>
         <item name="postSplashScreenTheme">@style/Theme.FoodDrinkChill</item>
     </style>
