@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- Light Theme -->
+    <color name="orange_primary">#FF7A00</color>
+    <color name="orange_secondary">#FFA94D</color>
+    <color name="light_background">#FFF4E6</color>
+    <color name="text_primary">#2D2D2D</color>
+
+    <!-- Dark Theme -->
+    <color name="dark_orange_primary">#FF9433</color>
+    <color name="dark_orange_secondary">#FFFFB870</color>
+    <color name="dark_background">#1A1A1A</color>
+    <color name="dark_text">#E0E0E0</color>
+    <color name="dark_surface">#2D2D2D</color>
+
+    <!-- System/Default -->
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
 </resources>
