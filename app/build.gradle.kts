@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -5,6 +8,11 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
+val keystorePropertiesFile = rootProject.file("local.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
 android {
     namespace = "com.example.fooddrinkchill"
     compileSdk {
@@ -16,17 +24,16 @@ android {
     signingConfigs {
         getByName("debug") {
             storeFile = file("debug.keystore")
-            storePassword = "123456"
-            keyAlias = "key0"
-            keyPassword = "123456"
+            storePassword = keystoreProperties.getProperty("DEBUG_STORE_PASSWORD")
+            keyAlias = keystoreProperties.getProperty("DEBUG_KEY_ALIAS")
+            keyPassword = keystoreProperties.getProperty("DEBUG_KEY_PASSWORD")
         }
         create("release") {
             storeFile = file("release.keystore")
-            storePassword = "Hoangquangnga160302@"
-            keyAlias = "key1"
-            keyPassword = "Hoangquangnga160302@"
+            storePassword = keystoreProperties.getProperty("RELEASE_STORE_PASSWORD")
+            keyAlias = keystoreProperties.getProperty("RELEASE_KEY_ALIAS")
+            keyPassword = keystoreProperties.getProperty("RELEASE_KEY_PASSWORD")
         }
-
     }
 
     defaultConfig {
@@ -41,7 +48,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
