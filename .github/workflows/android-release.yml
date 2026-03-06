@@ -28,6 +28,10 @@ jobs:
         run: |
           echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > app/google-services.json
 
+      - name: Create keystore properties
+        run: |
+          echo "${{ secrets.KEYSTORE_PROPERTIES_BASE64 }}" | base64 --decode > keystore.properties
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_RELEASE_BASE64 }}" | base64 --decode > app/release.keystore
@@ -51,6 +55,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: Food Drink Chill App ver${{ github.ref_name }}
+          prerelease: ${{ contains(github.ref_name, '-') }}
           body_path: CHANGELOG.md
           files: app/build/outputs/apk/release/food-drink-chill-${{ github.ref_name }}.apk
         env:
