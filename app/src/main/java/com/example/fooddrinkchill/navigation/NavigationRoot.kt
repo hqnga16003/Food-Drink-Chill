@@ -1,5 +1,7 @@
 package com.example.fooddrinkchill.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -10,46 +12,52 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.example.fooddrinkchill.auth.AuthNavigation
+import com.example.fooddrinkchill.data.repository.PreferenceRepository
+import com.example.fooddrinkchill.screen.welcome.WelcomeScreen
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
+import org.koin.compose.koinInject
 
 @Composable
 fun NavigationRoot(
-    modifier: Modifier = Modifier
+    paddingValues: PaddingValues = PaddingValues()
 ) {
+    val preferenceRepository: PreferenceRepository = koinInject()
+    val isFirstTime = preferenceRepository.isFirstTimeLaunch()
+
     val backStack = rememberNavBackStack(
         configuration = SavedStateConfiguration {
             serializersModule = SerializersModule {
                 polymorphic(NavKey::class) {
+                    subclass(Route.Welcome::class, Route.Welcome.serializer())
                     subclass(Route.Auth::class, Route.Auth.serializer())
                     subclass(Route.Main::class, Route.Main.serializer())
 
                 }
             }
-        },
-        Route.Auth
+        }, if (isFirstTime) Route.Welcome else Route.Auth
     )
     NavDisplay(
-        modifier = modifier,
-        backStack = backStack,
-        entryDecorators = listOf(
+        backStack = backStack, entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator()
-        ),
-        entryProvider = entryProvider {
+        ), entryProvider = entryProvider {
+            entry<Route.Welcome> {
+                WelcomeScreen {
+                    backStack.remove(Route.Welcome)
+                    backStack.add(Route.Auth)
+                }
+            }
+
             entry<Route.Auth> {
                 AuthNavigation(
-                    onLogin = {
+                    modifier = Modifier.padding(paddingValues), onLogin = {
 
-                    }
-                )
+                    })
             }
 
             entry<Route.Main> {
 
             }
-
-        }
-
-    )
+        })
 }
