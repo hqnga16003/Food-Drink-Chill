@@ -12,6 +12,7 @@ activityCompose = "1.12.4"
 kotlin = "2.3.10"
 composeBom = "2026.02.01"
 googleServices = "4.4.4"
+material3 = "1.5.0-alpha15"
 nav3Core = "1.0.1"
 lifecycleViewmodelNav3 = "2.11.0-alpha01"
 kotlinSerialization = "2.3.10"
@@ -19,6 +20,7 @@ kotlinxSerializationCore = "1.10.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
