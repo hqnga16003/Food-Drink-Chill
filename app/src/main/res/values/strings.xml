@@ -15,4 +15,9 @@
     <string name="welcome_title_3">Share experiences.</string>
     <string name="welcome_subtitle_3">Record and share great meals with friends.</string>
     <string name="welcome_button_finish">Enter App</string>
+
+    <!-- Main Navigation -->
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_profile">Profile</string>
 </resources>
