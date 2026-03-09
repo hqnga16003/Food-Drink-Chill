@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FoodDrinkChill</string>
+
+    <!-- Welcome Screen 1 -->
+    <string name="welcome_title_1">Chào mừng bạn đến với\nFood&amp;Drink Chill.</string>
+    <string name="welcome_subtitle_1">Khám phá hương vị, thư giãn từng khoảnh khắc.</string>
+    <string name="welcome_button_start">Bắt đầu ngay</string>
+
+    <!-- Welcome Screen 2 -->
+    <string name="welcome_title_2">Tìm quán dễ dàng.</string>
+    <string name="welcome_subtitle_2">Lọc theo khẩu vị và không gian yêu thích của bạn.</string>
+    <string name="welcome_button_next">Tiếp theo</string>
+
+    <!-- Welcome Screen 3 -->
+    <string name="welcome_title_3">Chia sẻ trải nghiệm.</string>
+    <string name="welcome_subtitle_3">Ghi lại chia sẻ những bữa ăn ngon với bạn bè.</string>
+    <string name="welcome_button_finish">Vào ứng dụng</string>
+</resources>

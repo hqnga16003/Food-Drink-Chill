@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">FoodDrinkChill</string>
+
+    <!-- Welcome Screen 1 -->
+    <string name="welcome_title_1">Welcome to\nFood&amp;Drink Chill.</string>
+    <string name="welcome_subtitle_1">Discover flavors, relax every moment.</string>
+    <string name="welcome_button_start">Get Started</string>
+
+    <!-- Welcome Screen 2 -->
+    <string name="welcome_title_2">Find shops easily.</string>
+    <string name="welcome_subtitle_2">Filter by taste and your favorite space.</string>
+    <string name="welcome_button_next">Next</string>
+
+    <!-- Welcome Screen 3 -->
+    <string name="welcome_title_3">Share experiences.</string>
+    <string name="welcome_subtitle_3">Record and share great meals with friends.</string>
+    <string name="welcome_button_finish">Enter App</string>
 </resources>
