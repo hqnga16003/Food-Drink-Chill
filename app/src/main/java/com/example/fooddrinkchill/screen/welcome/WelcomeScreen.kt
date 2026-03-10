@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,20 +35,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.fooddrinkchill.R
 import com.example.fooddrinkchill.ui.theme.OrangePrimary
+import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun WelcomeScreen(
     viewModel: WelcomeViewModel = koinViewModel(), onFinished: () -> Unit
 ) {
+    val coroutine = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = { 3 })
     LaunchedEffect(Unit) {
         viewModel.shareFlow.collect {
             when (it) {
                 is WelcomeSideEffect.Next -> {
-                    pagerState.animateScrollToPage(it.index)
+                    coroutine.launch {
+                        pagerState.animateScrollToPage(it.index)
+                    }
                 }
-
                 WelcomeSideEffect.CompleteWelcome -> onFinished()
             }
         }
