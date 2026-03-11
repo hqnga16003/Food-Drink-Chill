@@ -57,7 +57,7 @@ fun NavigationRoot(
             }
 
             entry<Route.Main> {
-
+                MainNavigation()
             }
         })
 }
