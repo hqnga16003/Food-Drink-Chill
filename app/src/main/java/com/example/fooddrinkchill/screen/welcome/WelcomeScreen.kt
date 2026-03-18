@@ -1,5 +1,6 @@
 package com.example.fooddrinkchill.screen.welcome
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -35,8 +36,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.fooddrinkchill.R
 import com.example.fooddrinkchill.ui.theme.OrangePrimary
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.component.getScopeId
+import org.koin.core.component.getScopeName
+import kotlin.concurrent.thread
 
 @Composable
 fun WelcomeScreen(

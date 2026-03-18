@@ -5,6 +5,10 @@
     <color name="orange_secondary">#FFA94D</color>
     <color name="light_background">#FFF4E6</color>
     <color name="text_primary">#2D2D2D</color>
+    <color name="light_outline">#E6E6E6</color>
+    <color name="light_outline_variant">#FFD7B3</color>
+    <color name="light_container">#FFF4E6</color>
+
 
     <!-- Dark Theme -->
     <color name="dark_orange_primary">#FF9433</color>
@@ -12,6 +16,10 @@
     <color name="dark_background">#1A1A1A</color>
     <color name="dark_text">#E0E0E0</color>
     <color name="dark_surface">#2D2D2D</color>
+    <color name="dark_outline">#3A3A3A</color>
+    <color name="dark_outline_variant">#4D2E14</color>
+    <color name="dark_container">#2D2D2D</color>
+
 
     <!-- System/Default -->
     <color name="white">#FFFFFFFF</color>

@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import com.example.fooddrinkchill.screen.HomeScreen
 
 @Composable
 fun MainNavigation(
@@ -34,7 +35,7 @@ fun MainNavigation(
             onBack = navigator::goBack,
             entries = navigationState.toEntries(entryProvider {
                 entry<Route.Main.Home> {
-                    Text("Home Screen")
+                    HomeScreen()
                 }
                 entry<Route.Main.Search> {
                     Text("Search Screen")

@@ -10,7 +10,9 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.example.fooddrinkchill.navigation.Route
-import com.example.fooddrinkchill.screen.LoginScreen
+import com.example.fooddrinkchill.screen.HomeScreen
+import com.example.fooddrinkchill.screen.auth.LoginScreen
+import com.example.fooddrinkchill.screen.auth.RegisterScreen
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 
@@ -40,10 +42,14 @@ fun AuthNavigation(
         ),
         entryProvider = entryProvider {
             entry<Route.Auth.Login> {
-                LoginScreen()
+                LoginScreen(onLoginSuccess = onLogin, onRegisterClick = {
+                    authBackStack.add(Route.Auth.Register)
+                })
             }
             entry<Route.Auth.Register> {
-
+                RegisterScreen(onBackToLogin = {
+                    authBackStack.remove(Route.Auth.Register)
+                }, onRegisterSuccess = onLogin)
             }
         }
     )

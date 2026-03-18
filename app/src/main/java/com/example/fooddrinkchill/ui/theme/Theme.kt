@@ -8,16 +8,55 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+
+@Immutable
+data class ExtendedColors(
+    val primaryText: Color,
+    val fixedPrimaryText: Color,
+    val outline: Color,
+    val outlineVariant: Color,
+    val container: Color = Color.Unspecified,
+)
+
+val LocalExtendedColors = staticCompositionLocalOf {
+    ExtendedColors(
+        primaryText = Color.Unspecified,
+        fixedPrimaryText = Color.Unspecified,
+        outline = Color.Unspecified,
+        outlineVariant = Color.Unspecified,
+        container = Color.Unspecified,
+    )
+}
 
 @Composable
 fun FoodDrinkChillTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
+    val extendedColors = if (darkTheme) {
+        ExtendedColors(
+            primaryText = DarkText,
+            fixedPrimaryText = OrangePrimary,
+            outline = DarkOutline,
+            outlineVariant = DarkOutlineVariant,
+            container = DarkContainer,
+        )
+    } else {
+        ExtendedColors(
+            outline = LightOutline,
+            primaryText = TextPrimary,
+            outlineVariant = LightOutlineVariant,
+            fixedPrimaryText = DarkOrangePrimary,
+            container = LightContainer,
+        )
+    }
+
     val colorScheme = if (darkTheme) {
         darkColorScheme(
             primary = DarkOrangePrimary,
@@ -50,9 +89,17 @@ fun FoodDrinkChillTheme(
         else -> colorScheme
     }
 
-    MaterialTheme(
-        colorScheme = finalColorScheme,
-        typography = Typography,
-        content = content
-    )
+    CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
+        MaterialTheme(
+            colorScheme = finalColorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
+}
+
+object ExtendedTheme {
+    val colorScheme: ExtendedColors
+        @Composable
+        get() = LocalExtendedColors.current
 }

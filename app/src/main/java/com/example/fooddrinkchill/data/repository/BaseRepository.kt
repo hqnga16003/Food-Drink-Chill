@@ -1,6 +1,7 @@
 package com.example.fooddrinkchill.data.repository
 
 import com.example.fooddrinkchill.data.model.Result
+import com.example.fooddrinkchill.data.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -14,7 +15,7 @@ abstract class BaseRepository {
             }
         }
     }
-    abstract suspend fun login()
-    abstract suspend fun register()
+    abstract suspend fun login(email: String, password: String): Result<User>
+    abstract suspend fun register(email: String, password: String): Result<User>
 
 }

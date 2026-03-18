@@ -11,12 +11,24 @@ val OrangeSecondary @Composable get() = colorResource(id = R.color.orange_second
 val LightBackground @Composable get() = colorResource(id = R.color.light_background)
 val TextPrimary @Composable get() = colorResource(id = R.color.text_primary)
 
+val LightOutline @Composable get() = colorResource(id = R.color.light_outline)
+
+val LightOutlineVariant @Composable get() = colorResource(id = R.color.light_outline_variant)
+val LightContainer @Composable get() = colorResource(id = R.color.light_container)
+
+
 // Dark Theme Colors
 val DarkOrangePrimary @Composable get() = colorResource(id = R.color.dark_orange_primary)
 val DarkOrangeSecondary @Composable get() = colorResource(id = R.color.dark_orange_secondary)
 val DarkBackground @Composable get() = colorResource(id = R.color.dark_background)
 val DarkText @Composable get() = colorResource(id = R.color.dark_text)
 val DarkSurface @Composable get() = colorResource(id = R.color.dark_surface)
+
+val DarkOutline @Composable get() = colorResource(id = R.color.dark_outline)
+
+val DarkOutlineVariant @Composable get() = colorResource(id = R.color.dark_outline_variant)
+val DarkContainer @Composable get() = colorResource(id = R.color.dark_container)
+
 
 // Standard
 val White = Color(0xFFFFFFFF)
